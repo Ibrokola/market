@@ -20,6 +20,7 @@ ALLOWED_HOSTS = [os.path.join(BASE_DIR, 'templates')]
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,10 +30,26 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'crispy_forms',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'pinax.notifications',
+    'django_messages',
+    'star_ratings',
+    'hvad',
+    'review',
+    'user_media',
+    'generic_positions',
+    'django_private_chat',
+    'imagekit',
+    'easy_maps',
+    # 'material.theme.blue',
+    # 'material',
+    # 'material.admin',
+
+    'products',
+    'userProfile',
 ]
 
 
@@ -54,6 +71,13 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # LOGIN_REDIRECT_URL = '/'
+
+
+CHAT_WS_SERVER_HOST = 'localhost'
+CHAT_WS_SERVER_PORT = 5002
+
+
+GRAPPELLI_ADMIN_TITLE = 'Oja'
 
 
 MIDDLEWARE = [
