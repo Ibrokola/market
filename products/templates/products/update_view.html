@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="col-sm-4 offset-sm-4">
+	{% include 'products/form_include.html' with form=form submit_btn="Update" %}
+</div>
+{% endblock %}
