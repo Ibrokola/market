@@ -1,15 +1,34 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .forms import ProductAddForm, ProductModelForm
 from .models import Product
-from market.mixins import MultiSlugMixin
+from market.mixins import MultiSlugMixin, SubmitBtnMixin
 
+
+
+
+
+class ProductCreateView(SubmitBtnMixin, CreateView):
+	model = Product
+	template_name = 'products/form.html'
+	form_class = ProductModelForm
+	success_url = '/products/add/'
+	submit_btn = 'Add product'	
 
 
 class ProductDetailView(MultiSlugMixin, DetailView):
 	model = Product
+
+
+class ProductUpdateView(SubmitBtnMixin, MultiSlugMixin, UpdateView):
+	model = Product
+	template_name = 'products/form.html'
+	form_class = ProductModelForm
+	success_url = '/products/'
+	submit_btn = 'Update product'
 
 
 class ProductListView(ListView):
@@ -17,6 +36,7 @@ class ProductListView(ListView):
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ProductListView, self).get_queryset(*args, **kwargs)
 		return qs 
+
 
 
 

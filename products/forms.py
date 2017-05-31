@@ -1,5 +1,6 @@
 from django import forms
 
+from django.utils.text import slugify
 from .models import Product
 
 
@@ -30,7 +31,6 @@ class ProductAddForm(forms.Form):
 	price_2 = forms.DecimalField(label='My price') #
 	post = forms.ChoiceField(widget=forms.RadioSelect, choices=POST_CHOICES)
 
-
 	def clean_price_2 (self):
 		price_2 = self.cleaned_data.get('price_2')
 		if price_2 <= 1.00:
@@ -52,7 +52,7 @@ class ProductAddForm(forms.Form):
 
 
 class ProductModelForm(forms.ModelForm):
-	post = forms.ChoiceField(widget=forms.RadioSelect, choices=POST_CHOICES)
+	# post = forms.ChoiceField(widget=forms.RadioSelect, choices=POST_CHOICES)
 	class Meta:
 		model = Product
 		fields = [
@@ -63,6 +63,17 @@ class ProductModelForm(forms.ModelForm):
 			'price_1',
 			'price_2',
 		]
+
+
+	def clean(self, *args, **kwargs):
+		cleaned_data = super(ProductModelForm, self).clean(*args, **kwargs)
+		# title= cleaned_data.get('title')
+		# slug = slugify(title)
+		# qs = Product.objects.filter(slug=slug).exists()
+		# if qs:
+		# 	raise forms.ValidationError('Title taken, please provide a diffrent title')
+		# return cleaned_data
+
 
 	# def clean_price_2 (self):
 	# 	price_2 = self.cleaned_data.get('price_2')

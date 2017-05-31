@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -5,6 +6,7 @@ from django.db import models
 
 
 class Profile(models.Model):
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name='user name')
 	title = models.CharField(max_length=120, verbose_name='Full Name')
 	address = models.CharField(max_length=240, null=True, blank=True)
 	address_2 = models.CharField(max_length=240, null=True, blank=True)
