@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- <div class="col-sm-4">
+	<p>
+		<form method="GET" action="">
+			<input type="text" name="q" placeholder="Search" value='{{ request.GET.q }}'>
+			<input type="submit" value="search">
+		</form>
+	</p>
+</div> -->
+<h2>Tags</h2>
+<ul>
+    {% for item in object_list %}
+        <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a> ({{ item.products.count }} product{% if item.products.count > 1 %}s{% endif %})</li>
+    {% empty %}
+    	<li>No Tags yet</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
