@@ -20,14 +20,21 @@
 
     <!-- custom styles -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+    <!-- <style>
+        .main-content{
+            width: 800px,
+            margin: 0 auto;
+        }
+    </style> -->
 
 {% block style %}{% endblock style %}
 </head>
 <body>
 	{% include 'navbar.html' %}
-
+<div class="container">
 	<main style="min-height: 1000px;">{% block content %}{% endblock %}</main>
-
+</div>
 	{% include 'footer.html' %}
 
 	{% include 'javascript.html' %}

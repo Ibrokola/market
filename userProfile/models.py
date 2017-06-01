@@ -11,7 +11,9 @@ class Profile(models.Model):
 	address = models.CharField(max_length=240, null=True, blank=True)
 	address_2 = models.CharField(max_length=240, null=True, blank=True)
 	member_since =  models.DateField(auto_now_add=True, verbose_name='signup date')
-	Biography = models.TextField()
+	# phone_number = models.IntegerField()
+	ip_address = models.GenericIPAddressField(protocol='both', unpack_ipv4=True)
+	biography = models.TextField()
 
 	# member_since 
 

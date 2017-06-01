@@ -173,6 +173,8 @@ MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "live-static", "media-root")
 
+PROTECTED_ROOT = os.path.join(BASE_DIR, "live-static", "protected-root")
+
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'METHOD': 'oauth2',
