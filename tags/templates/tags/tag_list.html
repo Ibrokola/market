@@ -9,7 +9,7 @@
 		</form>
 	</p>
 </div> -->
-<h2>Tags</h2>
+<h2>Most people bought</h2>
 <ul>
     {% for item in object_list %}
         <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a> ({{ item.products.count }} product{% if item.products.count > 1 %}s{% endif %})</li>

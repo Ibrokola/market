@@ -3,10 +3,10 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-
+from dashboard.views import DashboardView
 
 urlpatterns = [
-
+    url(r'^$', DashboardView.as_view(), name='dashboard'),
 	url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^notifications/', include('pinax.notifications.urls')),

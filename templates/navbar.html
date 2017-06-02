@@ -8,19 +8,19 @@
             </button>
 
             <!--Navbar Brand-->
-            <a class="navbar-brand waves-effect waves-light" href="#" target="_blank">Oja</a>
+            <a class="navbar-brand waves-effect waves-light" href="{% url 'dashboard' %}">Oja</a>
             <div class="collapse navbar-collapse" id="navbarNav2">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'products:list' %}">Products<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tags:list' %}">What's Selling</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#examples-of-use">Sellers Corner</a>
+                    </li>
                     <!-- <li class="nav-item">
-                        <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#best-features">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#examples-of-use">Examples</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#testimonials">Testimonials</a>
                     </li>
                     <li class="nav-item">

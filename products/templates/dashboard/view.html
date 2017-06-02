@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- <div class="col-sm-4">
+	<p>
+		<form method="GET" action="">
+			<input type="text" name="q" placeholder="Search" value='{{ request.GET.q }}'>
+			<input type="submit" value="search">
+		</form>
+	</p>
+</div> -->
+<h1>Suggested Products</h1>
+<hr>
+	<ul>
+		{% include "products/product_list_snippet.html" with product_list=products %}
+	</ul>
+	<h1>Popular Products</h1>
+	{% for tag in top_tags %}
+	<ul>
+		<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+	</ul>
+	{% endfor %}
+
+{% endblock %}

@@ -9,17 +9,9 @@
 		</form>
 	</p>
 </div>
-<h2>Product</h2>
+<h2>Products</h2>
 <ul>
-    {% for item in object_list %}
-        <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a><br> 
-        {{ item.make }} - {{ item.description|truncatechars:20 }} <br>
-        <span>had for - {{ item.age }}</span><br>
-        <span>Market price: ${{ item.price_1 }}</span><br>
-        <span>My price: ${{ item.price_2 }}</span>
-        </li>
-        <hr>
-    {% endfor %}
+        {% include "products/product_list_snippet.html" with product_list=object_list %}
 </ul>
 
 {% endblock %}

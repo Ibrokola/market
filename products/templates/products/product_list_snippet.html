@@ -1,0 +1,19 @@
+{% load get_thumbnail %}
+
+
+{% for item in product_list %}
+    <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a><br> 
+    {% if item|get_thumbnail:'sd' %}
+    <a href="{{ item.get_absolute_url }}">
+    	<img src="{{ item|get_thumbnail:'sd' }}">
+    </a>
+    <br>
+    {% endif %}
+    <span>had for - {{ item.age }}</span><br>
+    <span>Market price: ${{ item.price_1 }}</span><br>
+    <span>My price: ${{ item.price_2 }}</span>
+    </li>
+    <hr>
+{% empty %}
+	<li>No Products yet.</li>
+{% endfor %}
