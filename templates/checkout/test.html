@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+success: function(data, textStatus, jqXHR){
+					console.log(data.works)
+					if (data.works){
+						$("#content").html("New content " + data.time)
+					}
+					// console.log(textStatus)
+					// console.log(jqXHR)
+				},
+				error: function(jqXHR, textStatus, errorThrown){
+					console.log(jqXHR)
+					// console.log(textStatus)
+					// console.log(errorThrown)
+				}
+
+{% block script %}
+<script>
+	$(document).ready(function(){
+		{% block jquery %}
+		$("#test-call").click(function(event){
+			event.preventDefault();
+			// $("#content").html("Hello there")
+			var request = $.ajax({
+				method: "POST",
+				url: "{% url 'test' %}",
+				data:{
+					testData: "Hello new data",
+				}				
+			})
+
+			request.done(function(data){
+				if (data.works){
+					$("#content").html("New content " + data.time)
+				}
+			})
+			request.fail(function(jqXHR, textStatus){
+				if (jqXHR.status == 404){
+					alert("Page not found!")
+				} else if(jqXHR.status == 403) {
+					alert("You must be logged in to proceed")
+				}
+				else {
+					alert("There was an error with your request. Please try again.")
+				}
+			})
+		})
+
+		{% endblock jquery %}
+	})
+</script>
+{% endblock %}
+
+{% block content %}
+
+<a id="test-call" href="#">Test Ajax</a>
+
+<div id="content"></div>
+
+{% endblock %}
