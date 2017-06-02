@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% load get_thumbnail %}
 
 
@@ -8,7 +9,7 @@
 <ul>
 	{% for product_item in object.products.all %}
 		<li>
-			<a href="{{ product_item.get_absolute_url }}"><img src="{{ product_item.thumbnail_set.all.first.media.url }}"></a>
+			<a href="{{ product_item.get_absolute_url }}"><img src="{{ product_item|get_thumbnail:'micro' }}"></a>
 		</li>
 	{% empty %}
 	 <li>No Tags yet</li>

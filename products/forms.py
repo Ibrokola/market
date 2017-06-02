@@ -52,6 +52,7 @@ class ProductAddForm(forms.Form):
 
 
 class ProductModelForm(forms.ModelForm):
+	tags = forms.CharField(label='Related tags', required=False)
 	# post = forms.ChoiceField(widget=forms.RadioSelect, choices=POST_CHOICES)
 	class Meta:
 		model = Product
