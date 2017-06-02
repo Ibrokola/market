@@ -19,7 +19,8 @@ urlpatterns = [
     url(r'^', include('django_private_chat.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^products/', include('products.urls', namespace='products')),
-    url(r'^tags/', include('tags.urls', namespace='tags')),    
+    url(r'^tags/', include('tags.urls', namespace='tags')),
+    url(r'^seller/', include('sellers.urls', namespace='sellers')),    
 ]
 # 
 

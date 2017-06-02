@@ -1,9 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 
-# from .views import detail_view, list_view
-from . import views 
-
 from .views import (
 					ProductCreateView,
 					ProductListView,

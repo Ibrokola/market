@@ -7,7 +7,7 @@ from products.models import Product
 
 class DashboardView(View):
 	def get(self, request, *args, **kwargs):
-		views = None
+		tag_views = None
 		products = None
 		top_tags = None
 		try:
@@ -20,7 +20,6 @@ class DashboardView(View):
 			owned = request.user.myproducts.products.all()
 		except:
 			pass
-
 		if tag_views:
 			top_tags = [x.tag for x in tag_views]
 			products = Product.objects.filter(tag__in=top_tags)

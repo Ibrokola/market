@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+
+{% if  apply_form %}
+<form method="POST" action=''> {% csrf_token %}
+<h4>Rules of the Marketplace</h4>
+	<ol>
+		<li>Be kind</li>
+		<li>Sell well</li>
+		<li>Don't steal</li>
+	</ol>
+	{{ apply_form.as_p }}
+	<br>
+	<input type="submit">
+</form>
+{% endif %}
+
+
+{% endblock %}

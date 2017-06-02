@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'userProfile',
     'tags',
     'analytics',
+    'sellers',
 ]
 
 

@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'userProfile',
     'tags',
     'analytics',
-
+    'sellers',
 ]
 
 SITE_ID = 1
