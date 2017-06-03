@@ -3,9 +3,9 @@
 
 {% for item in product_list %}
     <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a><br> 
-    {% if item|get_thumbnail:'sd' %}
+    {% if item|get_thumbnail:'micro' %}
     <a href="{{ item.get_absolute_url }}">
-    	<img src="{{ item|get_thumbnail:'sd' }}">
+    	<img src="{{ item|get_thumbnail:'micro' }}">
     </a>
     <br>
     {% endif %}

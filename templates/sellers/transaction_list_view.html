@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- <div class="col-sm-4">
+	<p>
+		<form method="GET" action="">
+			<input type="text" name="q" placeholder="Search" value='{{ request.GET.q }}'>
+			<input type="submit" value="search">
+		</form>
+	</p>
+</div> -->
+<h2>Transactions</h2>
+<ul>
+        {% include "sellers/transaction_list.html" with transaction_list=object_list %}
+</ul>
+
+{% endblock %}

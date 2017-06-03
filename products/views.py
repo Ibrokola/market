@@ -14,7 +14,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 from .forms import ProductAddForm, ProductModelForm
-from .models import Product
+from .models import Product, MyProducts
 from market.mixins import (
 					MultiSlugMixin,
 					SubmitBtnMixin,
@@ -25,9 +25,11 @@ from analytics.models import TagView
 from tags.models import Tag
 from .mixins import ProductManagerMixin
 
+from sellers.mixins import SellerAccountMixin
 
 
-class ProductCreateView(LoginRequiredMixin, SubmitBtnMixin, CreateView):
+
+class ProductCreateView(SellerAccountMixin, SubmitBtnMixin, CreateView):
 	model = Product
 	template_name = 'products/form.html'
 	form_class = ProductModelForm
@@ -36,10 +38,12 @@ class ProductCreateView(LoginRequiredMixin, SubmitBtnMixin, CreateView):
 
 
 	def form_valid(self, form):
-		user = self.request.user
-		form.instance.user = user
+		# user = self.request.user
+		# form.instance.user = user
+		seller = self.get_account()
+		form.instance.seller = seller
 		valid_data = super(ProductCreateView, self).form_valid(form) 
-		form.instance.managers.add(user)
+		# form.instance.managers.add(user)
 		# add all default users
 		tags = form.cleaned_data.get('tags')
 		if tags:
@@ -50,8 +54,6 @@ class ProductCreateView(LoginRequiredMixin, SubmitBtnMixin, CreateView):
 					new_tag.products.add(form.instance)
 		return valid_data 
 
-	# def get_success_url(self):
-	# 	return reverse('products: list')
 
 
 class ProductDetailView(MultiSlugMixin, DetailView):
@@ -62,8 +64,9 @@ class ProductDetailView(MultiSlugMixin, DetailView):
 		context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
 		obj = self.get_object()
 		tags = obj.tag_set.all()
-		for tag in tags:
-			new_view = TagView.objects.add_count(self.request.user, tag)
+		if self.request.user.is_authenticated():
+			for tag in tags:
+				new_view = TagView.objects.add_count(self.request.user, tag)
 		return context
 
 
@@ -122,10 +125,47 @@ class ProductUpdateView(ProductManagerMixin, SubmitBtnMixin, MultiSlugMixin, Upd
 
 
 
+
+class SellerProductListView(SellerAccountMixin, ListView):
+	model = Product
+	template_name = "sellers/product_list_view.html"
+
+	def get_queryset(self, *args, **kwargs):
+		qs = super(SellerProductListView, self).get_queryset(*args, **kwargs)
+		qs = qs.filter(seller=self.get_account())
+		query = self.request.GET.get("q")
+		if query:
+			qs = qs.filter(
+						Q(title__icontains=query) |
+						Q(description__icontains=query) |
+						Q(price_1__icontains=query) |
+						Q(price_2__icontains=query)
+					).order_by('-pk')
+		return qs 
+
+
 class ProductListView(ListView):
 	model = Product
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ProductListView, self).get_queryset(*args, **kwargs)
+		query = self.request.GET.get("q")
+		if query:
+			qs = qs.filter(
+						Q(title__icontains=query) |
+						Q(description__icontains=query) |
+						Q(price_1__icontains=query) |
+						Q(price_2__icontains=query)
+					).order_by('-pk')
+		return qs 
+
+
+class UserLibraryListView(LoginRequiredMixin, ListView):
+	model = Product
+	template_name = "products/library_list.html"
+
+	def get_queryset(self, *args, **kwargs):
+		obj = MyProducts.objects.get_or_create(user=self.request.user)[0]
+		qs = obj.products.all()
 		query = self.request.GET.get("q")
 		if query:
 			qs = qs.filter(

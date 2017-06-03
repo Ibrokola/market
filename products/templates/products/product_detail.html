@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+
+{% block style %}
+
+{% endblock style %}
+
+
+
 {% block script %}
 <script>
 	$(document).ready(function(){
@@ -68,20 +75,30 @@
 
 {% block content %}
 <div class="row">
-	<div class="col-sm-8">
+	<div class="col-sm-7">
 	{% for img in object.thumbnail_set.all %}
 
 		<img src="{{ img.media.url }}" class="img-fluid">
 
 	{% endfor %}
 	</div>
-	<div class="col-sm-4">
+	<div class="col-sm-5">
 		<h1>{{ object.title }}</h1>
 		<p>{{ object.make }}</p>
 		<p>{{ object.age }}</p>
 		<p>{{ object.description }}</p>
 		<p>{{ object.price_1 }}</p>
 		<p>{{ object.price_2 }}</p>
+		<p><small>Number of purchase(s): {{ object.transaction_set.count }}</small></p>
+
+<!-- 	<p>
+	<div class="rating">
+    <input type="radio" name="rating"><i class="fa fa-star"></i>
+    <input type="radio" name="rating"><i class="fa fa-star"></i>
+    <input type="radio" name="rating"><i class="fa fa-star"></i>
+    <input type="radio" name="rating"><i class="fa fa-star"></i>
+	</div>
+	</p> -->
 
 		{% if request.user.is_authenticated and object.media and object in request.user.myproducts.products.all %}
 		<p><a href="{{ object.get_download }}">Download</a></p>

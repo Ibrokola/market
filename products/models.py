@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
 
+from sellers.models import SellerAccount
 
 
 
@@ -15,8 +16,9 @@ def download_media_location(instance, filename):
 
 
 class Product(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL)
-	managers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='product_managers', blank=True)
+	seller = models.ForeignKey(SellerAccount)
+	# user = models.ForeignKey(settings.AUTH_USER_MODEL)
+	# managers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='product_managers', blank=True)
 	title = models.CharField(max_length=120, null=True)
 	slug = models.SlugField(blank=True, unique=True)
 	make = models.CharField(max_length=120, null=True, blank=True, verbose_name='model')
@@ -31,6 +33,7 @@ class Product(models.Model):
 	#expiry date (for perishable goods)
 	description = models.TextField()
 	price_1 = models.DecimalField(max_digits=100, decimal_places=2, default=10.99, verbose_name='Market price')
+	price_2_active = models.BooleanField(default=False)
 	price_2 = models.DecimalField(max_digits=100, decimal_places=2, default=10.99, verbose_name='My price') #100.00
 
 
@@ -45,11 +48,21 @@ class Product(models.Model):
 		view_name = "products:detail_slug"
 		return reverse(view_name, kwargs={"slug": self.slug}) #args=(self.slug)
 
+	def get_edit_url(self):
+		view_name = "sellers:product_edit"
+		return reverse(view_name, kwargs={"pk": self.id}) #args=(self.slug)
+
 
 	def get_download(self):
 		view_name = "products:download_slug"
 		url = reverse(view_name, kwargs={"slug": self.slug})
 		return url
+
+	@property
+	def get_price(self):
+		if self.price_2 and self.price_2_active:
+			return self.price_2
+		return self.price_1
 
 
 

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 <h1>{{ title }}</h1>
@@ -19,5 +19,34 @@
 </form>
 {% endif %}
 
+<div class="row">
+	<div class="col-sm-7">
+		
+		
+		{% if transactions %}
+		<h4>Today's sales are ${{ today_sales }}</h4>
+
+		{% include "sellers/transaction_list.html" with transaction_list=transactions_today %}
+		
+		<br>
+			<h4>Recent Transaction History (Total Sales: ${{ total_sales }})</h4>
+			{% include "sellers/transaction_list.html" with transaction_list=transactions %}
+
+		<p>
+			<a href='{% url "sellers:transactions" %}'>View all transactions</a>
+		</p>
+
+		{% endif %}
+	</div>	
+	<div class="col-sm-5">
+		<h4>Sold</h4>
+		{% if products %}
+		<h5>My Products<br><small><a href="{% url 'sellers:product_create' %}">Add</a> | <a href="{% url 'sellers:product_list' %}">View All</a></small></h5>
+		<ul>
+	        {% include "products/product_list_snippet.html" with product_list=products %}
+		</ul>
+		{% endif %}
+	</div>
+</div>
 
 {% endblock %}

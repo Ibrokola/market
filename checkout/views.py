@@ -7,6 +7,8 @@ from products.models import Product, MyProducts
 
 from market.mixins import AjaxRequiredMixin
 
+from billing.models import Transaction
+
 
 class CheckoutAjaxView(AjaxRequiredMixin, View):
 	def post(self, request, *args, **kwargs):
@@ -23,6 +25,12 @@ class CheckoutAjaxView(AjaxRequiredMixin, View):
 			product_obj = Product.objects.get(id=product_id)
 		except:
 			product_obj = Product.objects.filter(id=product_id).first()
+
+		trans_obj = Transaction.objects.create(user=user,
+					product=product_obj,
+					price=product_obj.get_price,
+
+			) 
 
 		my_products = MyProducts.objects.get_or_create(user=request.user)[0]
 		my_products.products.add(product_obj)

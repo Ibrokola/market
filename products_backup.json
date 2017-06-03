@@ -1,0 +1,126 @@
+[
+{
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+        "seller": 3,
+        "title": "Converse",
+        "slug": "converse",
+        "make": "Converse chuck taylor",
+        "media": "converse/converse_fb0ejao.png",
+        "age": "2 months",
+        "description": "Dope chuck Taylor",
+        "price_1": "250.00",
+        "price_2_active": false,
+        "price_2": "120.00"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+        "seller": 3,
+        "title": "Table",
+        "slug": "table",
+        "make": "ikea",
+        "media": "table/pexels-photo-24019.jpg",
+        "age": "2 months",
+        "description": "Nice table",
+        "price_1": "40.00",
+        "price_2_active": false,
+        "price_2": "15.00"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+        "seller": 3,
+        "title": "bags",
+        "slug": "bags",
+        "make": "Gucci",
+        "media": "",
+        "age": "New",
+        "description": "Dope",
+        "price_1": "1800.00",
+        "price_2_active": false,
+        "price_2": "950.00"
+    }
+},
+{
+    "model": "products.thumbnail",
+    "pk": 12,
+    "fields": {
+        "product": 11,
+        "type": "hd",
+        "height": "368",
+        "width": "500",
+        "media": "converse/converse_fb0ejao.png"
+    }
+},
+{
+    "model": "products.thumbnail",
+    "pk": 13,
+    "fields": {
+        "product": 11,
+        "type": "sd",
+        "height": "258",
+        "width": "350",
+        "media": "converse/converse_fb0ejao_D7mtvTT.png"
+    }
+},
+{
+    "model": "products.thumbnail",
+    "pk": 14,
+    "fields": {
+        "product": 11,
+        "type": "micro",
+        "height": "110",
+        "width": "150",
+        "media": "converse/converse_fb0ejao_WeGurVH.png"
+    }
+},
+{
+    "model": "products.thumbnail",
+    "pk": 15,
+    "fields": {
+        "product": 12,
+        "type": "hd",
+        "height": "280",
+        "width": "500",
+        "media": "table/pexels-photo-24019.jpg"
+    }
+},
+{
+    "model": "products.thumbnail",
+    "pk": 16,
+    "fields": {
+        "product": 12,
+        "type": "sd",
+        "height": "196",
+        "width": "350",
+        "media": "table/pexels-photo-24019_BFClhBd.jpg"
+    }
+},
+{
+    "model": "products.thumbnail",
+    "pk": 17,
+    "fields": {
+        "product": 12,
+        "type": "micro",
+        "height": "84",
+        "width": "150",
+        "media": "table/pexels-photo-24019_4YxQmpL.jpg"
+    }
+},
+{
+    "model": "products.myproducts",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "products": [
+            11
+        ]
+    }
+}
+]

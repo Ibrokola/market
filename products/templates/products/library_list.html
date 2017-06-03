@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load get_thumbnail %}
+
+{% block content %}
+
+<div class="col-sm-4">
+	<p>
+		<form method="GET" action="">
+			<input type="text" name="q" placeholder="Search" value='{{ request.GET.q }}'>
+			<input type="submit" value="search">
+		</form>
+	</p>
+</div>
+<h2>Products you own</h2>
+
+<table class="table">
+<thead>
+	<th>Product</th>
+	<th>File</th>
+	<th></th>
+</thead>
+
+		{% for item in product_list %}
+	<tr>
+	<td>
+		<a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+	</td>
+	<td>
+	{% if item|get_thumbnail:'sd' %}
+		    <a href="{{ item.get_absolute_url }}">
+		    	<img src="{{ item|get_thumbnail:'sd' }}">
+		    </a>
+		    <br>
+		    {% endif %}
+	</td>
+	{% if item.get_download %}
+	<td><a href="{{ item.get_download }}">Download</a>
+	{% else %}
+	<span>Coming Soon</span>
+	{% endif %} 
+	</td>
+		{% empty %}
+			<li>No products in library yet, please shop now.</li>
+	</tr>	
+		{% endfor %}
+</table>
+
+{% endblock %}

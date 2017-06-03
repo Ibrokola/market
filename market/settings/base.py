@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'tags',
     'analytics',
     'sellers',
+    'billing',
 ]
 
 SITE_ID = 1

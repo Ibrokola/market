@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 from dashboard.views import DashboardView
 from checkout.views import CheckoutTestView, CheckoutAjaxView
+from products.views import UserLibraryListView
 
 urlpatterns = [
     url(r'^$', DashboardView.as_view(), name='dashboard'),
@@ -20,7 +21,8 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^products/', include('products.urls', namespace='products')),
     url(r'^tags/', include('tags.urls', namespace='tags')),
-    url(r'^seller/', include('sellers.urls', namespace='sellers')),    
+    url(r'^seller/', include('sellers.urls', namespace='sellers')),
+    url(r'^library/', UserLibraryListView.as_view(), name='library'),    
 ]
 # 
 

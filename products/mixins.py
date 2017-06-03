@@ -2,21 +2,19 @@ from django.http import Http404
 
 from market.mixins import LoginRequiredMixin
 
-class ProductManagerMixin(LoginRequiredMixin, object):
+from sellers.mixins import SellerAccountMixin
+
+class ProductManagerMixin(SellerAccountMixin, object):
 
 	def get_object(self, *args, **kwargs):
-		user = self.request.user
+		seller = self.get_account()
 		obj = super(ProductManagerMixin, self).get_object(*args, **kwargs)
 		try:
-			obj.user = user 
-		except:
-			raise Http404
-		try:
-			user in obj.managers.all()
+			obj.seller == seller 
 		except:
 			raise Http404
 
-		if obj.user == user or user in obj.managers.all():
+		if obj.seller == seller:
 			return obj
 		else:
 			raise Http404

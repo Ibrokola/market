@@ -1,0 +1,133 @@
+[
+{
+    "model": "tags.tag",
+    "pk": 1,
+    "fields": {
+        "title": "pic",
+        "slug": "pic",
+        "active": true,
+        "products": [
+            11
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 2,
+    "fields": {
+        "title": "Picture",
+        "slug": "picture",
+        "active": true,
+        "products": [
+            11,
+            12
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 3,
+    "fields": {
+        "title": "shoes",
+        "slug": "shoes",
+        "active": true,
+        "products": [
+            11
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 4,
+    "fields": {
+        "title": "tables",
+        "slug": "tables",
+        "active": true,
+        "products": []
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 5,
+    "fields": {
+        "title": "cool",
+        "slug": "cool",
+        "active": true,
+        "products": [
+            13
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 6,
+    "fields": {
+        "title": "dope",
+        "slug": "dope",
+        "active": true,
+        "products": [
+            13
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 7,
+    "fields": {
+        "title": "lovely",
+        "slug": "lovely",
+        "active": true,
+        "products": [
+            11
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 8,
+    "fields": {
+        "title": "gucci",
+        "slug": "gucci",
+        "active": true,
+        "products": [
+            13
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 9,
+    "fields": {
+        "title": "table",
+        "slug": "table",
+        "active": true,
+        "products": [
+            12
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 10,
+    "fields": {
+        "title": "house",
+        "slug": "house",
+        "active": true,
+        "products": [
+            12
+        ]
+    }
+},
+{
+    "model": "tags.tag",
+    "pk": 11,
+    "fields": {
+        "title": "furniture",
+        "slug": "furniture",
+        "active": true,
+        "products": [
+            12
+        ]
+    }
+}
+]
