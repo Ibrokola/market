@@ -20,9 +20,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
+s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
 
-ALLOWED_HOSTS = ['oja.herokuapp.com', '0.0.0.0']
+ALLOWED_HOSTS = ['oja.herokuapp.com']
 
 # Application definition
 
