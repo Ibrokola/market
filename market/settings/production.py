@@ -22,7 +22,7 @@ DEBUG = False
 
 # s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['oja.herokuapp.com']
 
 
 EMAIL_HOST          = 'smtp.sendgrid.com'
