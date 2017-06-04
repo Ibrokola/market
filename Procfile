@@ -1,1 +1,1 @@
-web: gunicorn oja.wsgi --log-file -
+web: gunicorn market.wsgi --log-file -
