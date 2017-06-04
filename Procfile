@@ -1,1 +1,1 @@
-web: gunicorn khanatek.wsgi --log-file -
+web: gunicorn oja.wsgi --log-file -
