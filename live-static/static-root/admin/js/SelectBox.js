@@ -141,4 +141,4 @@
         }
     };
     window.SelectBox = SelectBox;
-})(grp.jQuery);
+})(django.jQuery);

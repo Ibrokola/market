@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -15,5 +16,9 @@ class SellerAccount(models.Model):
 
 	def __str__(self):
 		return str(self.user.username)
+
+
+	def get_absolute_url(self):
+		return reverse("products:vendor_detail", kwargs={"vendor_name": self.user.username})
 
 

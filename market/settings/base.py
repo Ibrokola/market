@@ -1,5 +1,7 @@
 import os
 
+from market.aws.conf import *
+
 from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -21,8 +23,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'grappelli',
+    'jet',
+    'jet.dashboard',
     'django.contrib.admin',
+    'admin_tools_stats',
+    'django_nvd3',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -45,9 +50,6 @@ INSTALLED_APPS = [
     'django_private_chat',
     'imagekit',
     'easy_maps',
-    # 'material.theme.blue',
-    # 'material',
-    # 'material.admin',
 
     'products',
     'userProfile',
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     'analytics',
     'sellers',
     'billing',
+    'storages',
 ]
 
 SITE_ID = 1
@@ -82,7 +85,7 @@ CHAT_WS_SERVER_HOST = 'localhost'
 CHAT_WS_SERVER_PORT = 5002
 
 
-GRAPPELLI_ADMIN_TITLE = 'Oja'
+# GRAPPELLI_ADMIN_TITLE = 'Oja'
 
 
 MIDDLEWARE = [

@@ -1,6 +1,12 @@
+from __future__ import absolute_import, unicode_literals
+
 import os
 
+from market.aws.conf import *
+
 from decouple import config 
+
+from boto.s3.connection import S3Connection
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -14,14 +20,18 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [os.path.join(BASE_DIR, 'templates')]
+# s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
 
+ALLOWED_HOSTS = ['oja.herokuapp.com']
 
 # Application definition
 
 INSTALLED_APPS = [
-    'grappelli',
+    'jet',
+    'jet.dashboard',
     'django.contrib.admin',
+    'admin_tools_stats',
+    'django_nvd3',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -44,9 +54,6 @@ INSTALLED_APPS = [
     'django_private_chat',
     'imagekit',
     'easy_maps',
-    # 'material.theme.blue',
-    # 'material',
-    # 'material.admin',
 
     'products',
     'userProfile',
@@ -54,6 +61,7 @@ INSTALLED_APPS = [
     'analytics',
     'sellers',
     'billing',
+    'storages',
 ]
 
 
@@ -81,7 +89,8 @@ CHAT_WS_SERVER_HOST = 'localhost'
 CHAT_WS_SERVER_PORT = 5002
 
 
-GRAPPELLI_ADMIN_TITLE = 'Oja'
+# GRAPPELLI_ADMIN_TITLE = 'Oja'
+
 
 
 MIDDLEWARE = [
@@ -124,6 +133,11 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
 
 
 # Password validation

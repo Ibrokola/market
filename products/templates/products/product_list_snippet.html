@@ -11,7 +11,7 @@
     {% endif %}
     <span>had for - {{ item.age }}</span><br>
     <span>Market price: ${{ item.price_1 }}</span><br>
-    <span>My price: ${{ item.price_2 }}</span>
+    <span>My price: ${{ item.get_html_price|safe }}</span>
     </li>
     <hr>
 {% empty %}

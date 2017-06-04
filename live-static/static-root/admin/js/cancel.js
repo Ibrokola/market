@@ -6,4 +6,4 @@
             window.history.back();
         });
     });
-})(grp.jQuery);
+})(django.jQuery);

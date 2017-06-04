@@ -63,6 +63,7 @@ class ProductModelForm(forms.ModelForm):
 			'description',
 			'price_1',
 			'price_2',
+			'media',
 		]
 
 

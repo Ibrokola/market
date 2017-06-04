@@ -65,6 +65,12 @@ class Product(models.Model):
 		return self.price_1
 
 
+	def get_html_price(self):
+		price = self.get_price
+		if price == self.price_2:
+			return "<p>%s</p>" %(self.price_2)
+		else:
+			return "<p>%s</p>" %(self.price_1)
 
 
 def create_slug(instance, new_slug=None):
@@ -114,7 +120,7 @@ class Thumbnail(models.Model):
 					)
 
 	def __str__(self):
-		return str(self.media.path)
+		return str(self.media)
 
 import os
 import shutil
@@ -205,3 +211,14 @@ class MyProducts(models.Model):
 	class Meta:
 		verbose_name = 'My products'
 		verbose_name_plural = 'My products'
+
+
+class CuratedProducts(models.Model):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL)
+	section_name = models.CharField(max_length=120)
+	products = models.ManyToManyField(Product, blank=True)
+	active = models.BooleanField(default=True)
+
+
+	def __str__(self):
+		return self.section_name

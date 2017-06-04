@@ -9,7 +9,7 @@
 		</form>
 	</p>
 </div>
-<h2>Products</h2>
+<h2>Products{% if vendor_name %} by {{ vendor_name }}{% endif %}</h2>
 <ul>
         {% include "products/product_list_snippet.html" with product_list=object_list %}
 </ul>

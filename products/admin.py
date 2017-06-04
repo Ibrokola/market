@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import Product, MyProducts, Thumbnail
+from .models import Product, MyProducts, Thumbnail, CuratedProducts
+
+# from jet.admin import CompactInline
 
 
 
@@ -11,6 +13,10 @@ class ThumbnailInline(admin.TabularInline):
 	extra = 1
 	model = Thumbnail
 
+# class ThumbnailInline(CompactInline):
+# 	extra = 1
+# 	model = Thumbnail
+# 	show_change_link = True
 
 class ProductAdmin(admin.ModelAdmin):
 	inlines = [ThumbnailInline] 
@@ -29,3 +35,5 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(MyProducts)
 
 admin.site.register(Thumbnail)
+
+admin.site.register(CuratedProducts)

@@ -2,7 +2,8 @@ import random
 from django.views import View
 from django.shortcuts import render
 
-from products.models import Product
+from products.models import Product, CuratedProducts
+
 
 
 class DashboardView(View):
@@ -10,6 +11,7 @@ class DashboardView(View):
 		tag_views = None
 		products = None
 		top_tags = None
+		curated = CuratedProducts.objects.filter(active=True).order_by("?")
 		try:
 			tag_views=request.user.tagview_set.all().order_by('-count')[:5]
 		except:
@@ -38,5 +40,6 @@ class DashboardView(View):
 		context = {
 			"products":products,
 			"top_tags":top_tags,
+			"curated":curated,
 		}
 		return render(request, template, context)
