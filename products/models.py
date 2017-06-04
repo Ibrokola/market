@@ -120,7 +120,7 @@ class Thumbnail(models.Model):
 					)
 
 	def __str__(self):
-		return str(self.media)
+		return str(self.media.path)
 
 import os
 import shutil

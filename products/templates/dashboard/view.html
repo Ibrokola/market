@@ -14,15 +14,16 @@
 	<ul>
 		{% include "products/product_list_snippet.html" with product_list=products %}
 	</ul>
-	<h1>Popular Products</h1>
+<!-- 	<h1>Popular Products</h1>
 	{% for tag in top_tags %}
 	<ul>
 		<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
 	</ul>
-	{% endfor %}
+	{% endfor %} -->
 
 
 {% if curated.count > 0 %}
+<h1>Popular Products</h1>
 	{% for curated_section in curated %}
 		<div>
 			<h4>{{ curated_section.section_name }}</h4>

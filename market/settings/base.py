@@ -1,6 +1,6 @@
 import os
 
-from market.aws.conf import *
+# from market.aws.conf import *
 
 from decouple import config
 
@@ -17,7 +17,15 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
+
+
+EMAIL_HOST          = 'smtp.sendgrid.com'
+EMAIL_HOST_USER     = 'dopeboy' #hello@ibro.com
+EMAIL_MAIN          = 'anonhimous@gmail.com'
+EMAIL_HOST_PASSWORD = 'selfmade1'   
+EMAIL_PORT          =  587
+EMAIL_USER_TLS      =  True
 
 
 # Application definition
@@ -35,10 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+    'crispy_forms',
 
     'pinax.notifications',
     'django_messages',
@@ -76,9 +86,9 @@ ACCOUNT_AUTHENTICATION_METHOD =  'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
-# LOGIN_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+SOCIALACCOUNT_EMAIL_VERIFICATION = ACCOUNT_EMAIL_VERIFICATION
+LOGIN_REDIRECT_URL = '/'
 
 
 CHAT_WS_SERVER_HOST = 'localhost'

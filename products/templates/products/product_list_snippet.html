@@ -3,15 +3,15 @@
 
 {% for item in product_list %}
     <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a><br> 
-    {% if item|get_thumbnail:'micro' %}
+    {% if item|get_thumbnail:'sd' %}
     <a href="{{ item.get_absolute_url }}">
-    	<img src="{{ item|get_thumbnail:'micro' }}">
+    	<img src="{{ item|get_thumbnail:'sd' }}">
     </a>
     <br>
     {% endif %}
     <span>had for - {{ item.age }}</span><br>
     <span>Market price: ${{ item.price_1 }}</span><br>
-    <span>My price: ${{ item.get_html_price|safe }}</span>
+    <span>My price: {{ item.get_html_price|safe }}</span>
     </li>
     <hr>
 {% empty %}

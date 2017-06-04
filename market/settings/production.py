@@ -2,11 +2,11 @@ from __future__ import absolute_import, unicode_literals
 
 import os
 
-from market.aws.conf import *
+# from market.aws.conf import *
 
 from decouple import config 
 
-from boto.s3.connection import S3Connection
+# from boto.s3.connection import S3Connection
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -20,9 +20,18 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
+# s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
 
-ALLOWED_HOSTS = ['oja.herokuapp.com']
+ALLOWED_HOSTS = []
+
+
+EMAIL_HOST          = 'smtp.sendgrid.com'
+EMAIL_HOST_USER     = 'dopeboy' #hello@ibro.com
+EMAIL_MAIN          = 'anonhimous@gmail.com'
+EMAIL_HOST_PASSWORD = 'selfmade1'   
+EMAIL_PORT          =  587
+EMAIL_USER_TLS      =  True
+
 
 # Application definition
 
@@ -39,10 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    'crispy_forms',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+    'crispy_forms',
 
     'pinax.notifications',
     'django_messages',
@@ -80,9 +92,10 @@ ACCOUNT_AUTHENTICATION_METHOD =  'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+SOCIALACCOUNT_EMAIL_VERIFICATION = ACCOUNT_EMAIL_VERIFICATION
 
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 
 CHAT_WS_SERVER_HOST = 'localhost'
@@ -176,7 +189,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 
 STATIC_URL = '/static/'
