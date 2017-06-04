@@ -20,14 +20,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['0.0.0.0']
 
 
-EMAIL_HOST          = 'smtp.sendgrid.com'
-EMAIL_HOST_USER     = 'dopeboy' #hello@ibro.com
-EMAIL_MAIN          = 'anonhimous@gmail.com'
-EMAIL_HOST_PASSWORD = 'selfmade1'   
-EMAIL_PORT          =  587
-EMAIL_USER_TLS      =  True
-
-
 # Application definition
 
 INSTALLED_APPS = [
